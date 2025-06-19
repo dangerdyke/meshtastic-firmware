@@ -69,6 +69,9 @@
 #if !MESHTASTIC_EXCLUDE_GENERIC_THREAD_MODULE
 #include "modules/GenericThreadModule.h"
 #endif
+#if !MESHTASTIC_EXCLUDE_SNIFFER
+#include "modules/SnifferModule.h"
+#endif
 
 #ifdef ARCH_ESP32
 #if defined(USE_SX1280) && !MESHTASTIC_EXCLUDE_AUDIO
@@ -256,6 +259,10 @@ void setupModules()
 #if !MESHTASTIC_EXCLUDE_TRACEROUTE
         traceRouteModule = new TraceRouteModule();
 #endif
+#if !MESHTASTIC_EXCLUDE_SNIFFER
+        snifferModule = new SnifferModule();
+#endif
+
     }
     // NOTE! This module must be added LAST because it likes to check for replies from other modules and avoid sending extra
     // acks
